@@ -9,24 +9,24 @@ using RazorPagesLessons.Services;
 
 namespace RazorPagesGeneral.Pages.Employees
 {
-    public class DetailsModel : PageModel
+    public class EditModel : PageModel
     {
         private readonly IEmployeeRepository _employeeRepository;
 
-        public DetailsModel(IEmployeeRepository employeeRepository)
+        public EditModel(IEmployeeRepository employeeRepository)
         {
             _employeeRepository = employeeRepository;
         }
 
-        public Employee Employee { get; private set; }
+        public Employee Employee { get; set; }
 
         public IActionResult OnGet(int id)
         {
             Employee = _employeeRepository.GetEmployee(id);
 
-            // Lesson 6
             if (Employee == null)
-                return RedirectToPage("/NotFound");
+                return RedirectToPage("/NoyFound");
+
             return Page();
         }
     }
