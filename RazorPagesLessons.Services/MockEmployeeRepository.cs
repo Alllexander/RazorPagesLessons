@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace RazorPagesLessons.Services
@@ -47,6 +48,21 @@ namespace RazorPagesLessons.Services
         public Employee GetEmployee(int id)
         {
             return _employeeList.FirstOrDefault(x => x.Id == id);
+        }
+
+        public Employee Update(Employee updateEmployee)
+        {
+            Employee employee = _employeeList.FirstOrDefault(X500DistinguishedName => X500DistinguishedName.Id == updateEmployee.Id);
+
+            if (employee != null)
+            {
+                employee.Name = updateEmployee.Name;
+                employee.Email = updateEmployee.Email;
+                employee.Department = updateEmployee.Department;
+                employee.PhotoPath = updateEmployee.PhotoPath;                
+            }
+
+            return employee;
         }
     }
 }
