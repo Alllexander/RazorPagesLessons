@@ -20,7 +20,7 @@ namespace RazorPagesLessons.Services
                 },
                 new Employee()
                 {
-                    Id = 1, Name = "Mark", Email = "mark@test.ua", PhotoPath = "avatar.png", Department = Dept.IT
+                    Id = 1, Name = "Mark", Email = "mark@test.ua", PhotoPath = "avatar6.png", Department = Dept.IT
                 },
                 new Employee()
                 {
@@ -40,6 +40,14 @@ namespace RazorPagesLessons.Services
                 },
             };
         }
+
+        public Employee Add(Employee newEmployee)
+        {
+            newEmployee.Id = _employeeList.Max(X500DistinguishedName => X500DistinguishedName.Id) + 1;
+            _employeeList.Add(newEmployee);
+            return newEmployee;
+        }
+
         public IEnumerable<Employee> GetAllEmployees()
         {
             return _employeeList;
