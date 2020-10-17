@@ -28,7 +28,9 @@ namespace RazorPagesGeneral.Pages.Employees
         [BindProperty]
         public IFormFile Photo { get; set; }
 
-
+        [BindProperty]
+        public bool Notify { get; set; }
+        public string Message { get; set; }
 
         public IActionResult OnGet(int id)
         {
@@ -54,7 +56,19 @@ namespace RazorPagesGeneral.Pages.Employees
 
             Employee = _employeeRepository.Update(employee);
 
+            TempData["SuccessMessage"] = $"Оновлення {Employee.Name} успішне!";
+
             return RedirectToPage("Employees");
+        }
+
+        public void OnPostUpdateNotificationPreference(int id)
+        {
+            if (Notify)
+                Message = "Дякуємо, що ввімкнули сповіщення";
+            else
+                Message = "Ви вимкнули сповіщення на email";
+
+            Employee = _employeeRepository.GetEmployee(id);
         }
 
         private string ProcessUploadedFile()
