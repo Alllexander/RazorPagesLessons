@@ -28,6 +28,8 @@ namespace RazorPagesGeneral.Pages.Employees
         [BindProperty]
         public IFormFile Photo { get; set; }
 
+
+
         public IActionResult OnGet(int id)
         {
             Employee = _employeeRepository.GetEmployee(id);
