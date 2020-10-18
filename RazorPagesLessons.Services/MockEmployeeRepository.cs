@@ -20,7 +20,7 @@ namespace RazorPagesLessons.Services
                 },
                 new Employee()
                 {
-                    Id = 1, Name = "Mark", Email = "mark@test.ua", PhotoPath = "avatar6.png", Department = Dept.IT
+                    Id = 1, Name = "Mark", Email = "mark@test.ua", PhotoPath = "avatar.png", Department = Dept.IT
                 },
                 new Employee()
                 {
@@ -46,6 +46,16 @@ namespace RazorPagesLessons.Services
             newEmployee.Id = _employeeList.Max(X500DistinguishedName => X500DistinguishedName.Id) + 1;
             _employeeList.Add(newEmployee);
             return newEmployee;
+        }
+
+        public Employee Delete(int id)
+        {
+            Employee employeeToDelete = _employeeList.FirstOrDefault(X500DistinguishedName => X500DistinguishedName.Id == id);
+
+            if (employeeToDelete != null)
+                _employeeList.Remove(employeeToDelete);
+
+            return employeeToDelete;
         }
 
         public IEnumerable<Employee> GetAllEmployees()
