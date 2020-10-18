@@ -12,7 +12,10 @@
     </div>
 }
 
-<h1>Employess</h1>
+@*@await Component.InvokeAsync("HeadCount")*@
+    <vc:head-count department="@null"></vc:head-count>
+
+<h1>Працівники</h1>
 
 <div class="row">
     @foreach (var item in Model.Employees)
