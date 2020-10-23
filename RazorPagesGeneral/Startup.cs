@@ -30,7 +30,9 @@ namespace RazorPagesGeneral
             {
                 options.UseSqlServer(Configuration.GetConnectionString("EmployeeDbConection"));
             });
-            services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+
+            //services.AddSingleton<IEmployeeRepository, MockEmployeeRepository>();
+            services.AddScoped<IEmployeeRepository, SQLEmployeeRepository>();
             services.AddRazorPages();
             
             //Lesson 5
